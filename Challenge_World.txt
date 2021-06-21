@@ -1,0 +1,42 @@
+/* QA - Community: World Challenge */
+
+SELECT count(ID) AS USA_City_Count FROM city WHERE CountryCode='USA';
+
+SELECT Name, LifeExpectancy, Population FROM country WHERE Name='Argentina';
+
+SELECT Name, LifeExpectancy FROM country WHERE LifeExpectancy IS NOT NULL ORDER BY LifeExpectancy DESC LIMIT 1;
+
+SELECT cou.Name, c.Name FROM country cou JOIN city c ON c.ID=cou.Capital WHERE cou.Name='Spain';
+
+SELECT cou.Region, cl.Language FROM country cou JOIN countrylanguage cl ON cou.Code=cl.CountryCode WHERE cou.Region='Southeast Asia';
+
+SELECT ID, Name FROM city WHERE Name LIKE 'F%' LIMIT 25;
+
+SELECT count(ID) AS Cities_In_China FROM country c JOIN city ci ON c.Code=ci.CountryCode WHERE c.Name='China';
+
+SELECT Name, Population FROM country WHERE Population IS NOT NULL AND Population >0 ORDER BY Population ASC LIMIT 1;
+
+SELECT count(Code) AS Number_of_Countries FROM country;
+
+SELECT Name, SurfaceArea FROM country ORDER BY SurfaceArea DESC LIMIT 10;
+
+SELECT ci.Name, ci.Population FROM city ci JOIN country c ON c.Code=ci.CountryCode WHERE c.Name='Japan' ORDER BY ci.Population DESC LIMIT 5;
+
+UPDATE country SET HeadOfState='Elizabeth II' WHERE HeadOfState='Elisabeth II';
+SELECT Name, Code FROM country WHERE HeadOfState='ELizabeth II';
+
+SELECT Name, Population/SurfaceArea PAR FROM country WHERE Population IS NOT NULL AND Population >0 ORDER BY PAR ASC LIMIT 10;
+
+SELECT DISTINCT language FROM countrylanguage;
+
+SELECT Name, GNP FROM country ORDER BY GNP DESC LIMIT 10; 
+
+SELECT c.Name, count(cl.Language) Number_of_Languages FROM country c JOIN countrylanguage cl ON c.Code=cl.CountryCode GROUP BY c.Name ORDER BY Number_of_Languages DESC LIMIT 10;
+
+SELECT c.Name, cl.Percentage FROM country c JOIN countrylanguage cl ON c.Code=cl.CountryCode WHERE cl.Language='German' AND cl.Percentage >50;
+
+SELECT Name, LifeExpectancy FROM country WHERE LifeExpectancy IS NOT NULL ORDER BY LifeExpectancy ASC LIMIT 1;
+
+SELECT GovernmentForm, count(GovernmentForm) Count_GF FROM country GROUP BY GovernmentForm ORDER BY Count_GF DESC LIMIT 3;
+
+SELECT count(IndepYear) AS Count_of_Indpendence_Gained FROM country WHERE IndepYear IS NOT NULL;
